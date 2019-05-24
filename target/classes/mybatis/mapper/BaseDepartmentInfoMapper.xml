@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mfy.mybatis.dao.BaseDepartmentInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.mfy.mybatis.pojo.BaseDepartmentInfo">
+        <id column="departmentInfoId" property="departmentInfoId"></id>
+        <result column="departmentName" property="departmentName"></result>
+        <collection property="bu" ofType="com.mfy.mybatis.pojo.BaseUserInfo">
+            <id column="userInfoId" jdbcType="VARCHAR" property="userInfoId"/>
+            <result column="userName" jdbcType="VARCHAR" property="userName"/>
+            <result column="userNumber" jdbcType="VARCHAR" property="userNumber"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectAllBaseDeparmentInfoAndUser" resultMap="BaseResultMap">
+          select *
+          from basedepartmentinfo d
+          LEFT JOIN baseuserinfo bu
+          on d.departmentInfoId=bu.departmentInfoId
+    </select>
+</mapper>

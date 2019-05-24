@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mfy.mybatis.dao.BaseUserInfoMapper">
+    <resultMap id="BaseResultMap" type="com.mfy.mybatis.pojo.BaseUserInfo">
+        <id column="userInfoId" jdbcType="VARCHAR" property="userInfoId"/>
+        <result column="userName" jdbcType="VARCHAR" property="userName"/>
+        <result column="userNumber" jdbcType="VARCHAR" property="userNumber"/>
+        <result column="rankOrder" jdbcType="VARCHAR" property="rankOrder"/>
+        <result column="phoneNo" jdbcType="VARCHAR" property="phoneNo"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="sex" jdbcType="VARCHAR" property="sex"/>
+        <result column="imei" jdbcType="VARCHAR" property="imei"/>
+        <result column="note" jdbcType="VARCHAR" property="note"/>
+        <result column="enabled" jdbcType="SMALLINT" property="enabled"/>
+        <result column="updateTime" jdbcType="BIGINT" property="updateTime"/>
+        <result column="hiddenPhoneNo" jdbcType="TINYINT" property="hiddenPhoneNo"/>
+        <result column="fileName" jdbcType="VARCHAR" property="fileName"/>
+        <result column="lognoName" jdbcType="VARCHAR" property="lognoName"/>
+        <result column="departmentInfoId" jdbcType="VARCHAR" property="departmentInfoId"></result>
+        <association property="dp" javaType="com.mfy.mybatis.pojo.BaseDepartmentInfo">
+            <id column="departmentInfoId" property="departmentInfoId"></id>
+            <result column="departmentName" property="departmentName"></result>
+        </association>
+    </resultMap>
+
+    <sql id="Blob_Column_List">
+      userInfoId, userName, userNumber, rankOrder, phoneNo, email,sex, imei, note, enabled,updateTime, hiddenPhoneNo, fileName,lognoName,departmentInfoId
+    </sql>
+    <insert id="insert" parameterType="com.mfy.mybatis.pojo.BaseUserInfo">
+    insert into baseuserinfo (userInfoId, userName, userNumber, 
+      rankOrder, phoneNo, email, 
+      sex, imei, note, enabled, 
+      updateTime, hiddenPhoneNo, fileName, 
+      lognoName, permission)
+    values (#{userinfoid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{usernumber,jdbcType=VARCHAR}, 
+      #{rankorder,jdbcType=VARCHAR}, #{phoneno,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{imei,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{enabled,jdbcType=SMALLINT}, 
+      #{updatetime,jdbcType=BIGINT}, #{hiddenphoneno,jdbcType=TINYINT}, #{filename,jdbcType=VARCHAR}, 
+      #{lognoname,jdbcType=VARCHAR}, #{permission,jdbcType=LONGVARCHAR})
+  </insert>
+    <insert id="insertBaseUserInfo" parameterType="com.mfy.mybatis.pojo.BaseUserInfo">
+        insert into baseuserinfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userInfoId != null">
+                userInfoId,
+            </if>
+            <if test="userName != null">
+                userName,
+            </if>
+            <if test="userNumber != null">
+                userNumber,
+            </if>
+            <if test="rankOrder != null">
+                rankOrder,
+            </if>
+            <if test="phoneNo != null">
+                phoneNo,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="imei != null">
+                imei,
+            </if>
+            <if test="note != null">
+                note,
+            </if>
+            <if test="enabled != null">
+                enabled,
+            </if>
+            <if test="updateTime != null">
+                updateTime,
+            </if>
+            <if test="hiddenPhoneNo != null">
+                hiddenPhoneNo,
+            </if>
+            <if test="fileName != null">
+                fileName,
+            </if>
+            <if test="lognoName != null">
+                lognoName,
+            </if>
+            <if test="permission != null">
+                permission,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userInfoId != null">
+                #{userInfoId,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userNumber != null">
+                #{userNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="rankOrder != null">
+                #{rankOrder,jdbcType=VARCHAR},
+            </if>
+            <if test="phoneNo != null">
+                #{phoneNo,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="imei != null">
+                #{imei,jdbcType=VARCHAR},
+            </if>
+            <if test="note != null">
+                #{note,jdbcType=VARCHAR},
+            </if>
+            <if test="enabled != null">
+                #{enabled,jdbcType=SMALLINT},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=BIGINT},
+            </if>
+            <if test="hiddenPhoneNo != null">
+                #{hiddenPhoneNo,jdbcType=TINYINT},
+            </if>
+            <if test="fileName != null">
+                #{fileName,jdbcType=VARCHAR},
+            </if>
+            <if test="lognoName != null">
+                #{lognoName,jdbcType=VARCHAR},
+            </if>
+            <if test="permission != null">
+                #{permission,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="findBaseUserInfoByParam" resultMap="BaseResultMap">
+        select
+        <include refid="Blob_Column_List"/>
+        from BaseUserInfo
+        <where>
+            <if test="userInfoId != null">
+                userInfoId=#{userInfoId,jdbcType=VARCHAR}
+            </if>
+            <if test="userName != null">
+                AND userName=#{userName,jdbcType=VARCHAR}
+            </if>
+            <if test="userNumber != null">
+                AND userNumber=#{userNumber,jdbcType=VARCHAR}
+            </if>
+            <if test="rankOrder != null">
+                AND rankOrder=#{rankOrder,jdbcType=VARCHAR}
+            </if>
+            <if test="phoneNo != null">
+                AND phoneNo=#{phoneNo,jdbcType=VARCHAR}
+            </if>
+            <if test="email != null">
+                AND email=#{email,jdbcType=VARCHAR}
+            </if>
+            <if test="sex != null">
+                AND sex=#{sex,jdbcType=VARCHAR}
+            </if>
+            <if test="imei != null">
+                AND imei=#{imei,jdbcType=VARCHAR}
+            </if>
+            <if test="note != null">
+                AND note=#{note,jdbcType=VARCHAR}
+            </if>
+            <if test="enabled != null">
+                AND enabled=#{enabled,jdbcType=SMALLINT}
+            </if>
+            <if test="updateTime != null">
+                AND updateTime=#{updateTime,jdbcType=BIGINT}
+            </if>
+            <if test="hiddenPhoneNo != null">
+                AND hiddenPhoneNo=#{hiddenPhoneNo,jdbcType=TINYINT}
+            </if>
+            <if test="fileName != null">
+                AND fileName=#{fileName,jdbcType=VARCHAR}
+            </if>
+            <if test="lognoName != null">
+                AND lognoName=-#{lognoName,jdbcType=VARCHAR}
+            </if>
+            <if test="permission != null">
+                AND permission=#{permission,jdbcType=LONGVARCHAR}
+            </if>
+        </where>
+
+    </select>
+
+
+    <select id="selectAllBaseUserInfo" resultType="com.mfy.mybatis.pojo.BaseUserInfo">
+        select
+        <include refid="Blob_Column_List"/>
+        from BaseUserInfo
+    </select>
+
+    <select id="selectAllBaseUserInfoAndDempartment" resultMap="BaseResultMap">
+        select * from BaseUserInfo bu,basedepartmentinfo bd where bu.departmentInfoId = bd.departmentInfoId
+    </select>
+
+    <select id="findBaseUserInfoBySex" resultType="java.lang.Integer" parameterType="int">
+        select count(1) from BaseUserInfo
+        <where>
+            <if test=" list != null || list.size() > 0">
+                sex in
+                <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+                    #{item }
+                </foreach>
+
+            </if>
+        </where>
+    </select>
+
+</mapper>
