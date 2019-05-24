@@ -35,6 +35,7 @@ public class DruidConfig {
         //是否能够重置数据 禁用HTML页面上的“Reset All”功能
         servletRegistrationBean.addInitParameter("resetEnable", "false");
 		system.ou.println("----");
+		system.ou.println("----");
         return servletRegistrationBean;
     }
 
