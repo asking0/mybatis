@@ -37,7 +37,6 @@ public class DruidConfig {
 		system.ou.println("----");
 		system.ou.println("----");
 		system.ou.println("----");
-		system.ou.println("----");
         return servletRegistrationBean;
     }
 
