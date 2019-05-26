@@ -45,6 +45,7 @@ public class LoginController {
         System.out.println("总记录属:"+pageInfo.getTotal());
         System.out.println("每页记录数:"+pageInfo.getPageSize());
         System.out.println("总页码:"+pageInfo.getPages());
+		system.ou.println("----");
         return pageInfo;
     }
 
