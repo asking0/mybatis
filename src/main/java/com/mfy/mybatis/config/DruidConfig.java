@@ -36,7 +36,6 @@ public class DruidConfig {
         servletRegistrationBean.addInitParameter("resetEnable", "false");
 		system.ou.println("----");
 		system.ou.println("----");
-		system.ou.println("----");
         return servletRegistrationBean;
     }
 
